@@ -138,7 +138,7 @@ abstract public class ArticlePageObject extends MainPageObject {
 
   public void assertArticleIsDeleted() {
     this.assertElementNotPresent(TITLE,
-            "We didnt' find any results by request ");
+            "Article is still present");
   }
 
 

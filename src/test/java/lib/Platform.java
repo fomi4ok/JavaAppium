@@ -53,7 +53,7 @@ public class Platform {
     DesiredCapabilities capabilities = new DesiredCapabilities();
      capabilities.setCapability("platformName", "Android");
       capabilities.setCapability("deviceName", "AndroidTestDevice");
-      capabilities.setCapability("platformVersion", "8.0.0");
+      capabilities.setCapability("platformVersion", "8.0");
       capabilities.setCapability("automationName", "Appium");
       capabilities.setCapability("appPackage", "org.wikipedia");
       capabilities.setCapability("appActivity", ".main.MainActivity");
@@ -67,7 +67,7 @@ public class Platform {
 
     capabilities.setCapability("platformName", "iOS");
     capabilities.setCapability("deviceName", "iPhone SE");
-    capabilities.setCapability("platformVersion", "11.4");
+    capabilities.setCapability("platformVersion", "12.1");
     capabilities.setCapability("app", "/Users/mfomicheva/Documents/GitHub/mobile_automation/apks/Wikipedia.app");
     return capabilities;
 

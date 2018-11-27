@@ -13,7 +13,7 @@ import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
-public class MyListTests extends CoreTestCase{
+public class MyListTests extends CoreTestCase {
 
   private String name_of_the_folder = "Learning programming";
 
@@ -30,10 +30,9 @@ public class MyListTests extends CoreTestCase{
     ArticlePageObject.waitForTitleElement();
     String article_title = ArticlePageObject.getArticleTitle();
 
-    if(Platform.getInstance().isAndroid()) {
-    ArticlePageObject.addArticleToMyList(name_of_the_folder);
-    }
-    else {
+    if (Platform.getInstance().isAndroid()) {
+      ArticlePageObject.addArticleToMyList(name_of_the_folder);
+    } else {
       ArticlePageObject.addArticleToMySaved();
       ArticlePageObject.closeThePopUp();
 
@@ -51,11 +50,13 @@ public class MyListTests extends CoreTestCase{
     MyListPageObject.swipeByArticleToDelete(article_title);
 
 
-
   }
+
   /// ex 5
   @Test
   public void testSaveTwoArticleToMyList() {
+
+    //adding first article to the list
 
     SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
     SearchPageObject.initSearchInput();
@@ -66,28 +67,30 @@ public class MyListTests extends CoreTestCase{
     ArticlePageObject.waitForTitleElement();
     String article_title = ArticlePageObject.getArticleTitle();
 
-    if(Platform.getInstance().isAndroid()) {
+    if (Platform.getInstance().isAndroid()) {
       ArticlePageObject.addArticleToMyList(name_of_the_folder);
-    }
-    else {
+    } else {
       ArticlePageObject.addArticleToMySaved();
       ArticlePageObject.closeThePopUp();
 
     }
     ArticlePageObject.closeArticle();
 
+    //adding second article to the list
+
+
     SearchPageObject.initSearchInput();
     if (Platform.getInstance().isAndroid()) {
       SearchPageObject.typeSearchLine("Java");
-    } else { SearchPageObject.clickByArticleWithSubstring("Programming language"); }
+    }
 
+    SearchPageObject.clickByArticleWithSubstring("Programming language");
     ArticlePageObject.waitForTitleElement();
     String second_article_title = ArticlePageObject.getArticleTitle();
 
-    if(Platform.getInstance().isAndroid()) {
-      ArticlePageObject.addArticleToMyList(name_of_the_folder);
-    }
-    else {
+    if (Platform.getInstance().isAndroid()) {
+      ArticlePageObject.addArticleToExistingList(name_of_the_folder);
+    } else {
       ArticlePageObject.addArticleToMySaved();
 
     }
@@ -104,19 +107,13 @@ public class MyListTests extends CoreTestCase{
     }
     MyListPageObject.swipeByArticleToDelete(article_title);
 
-
     if (Platform.getInstance().isAndroid()) {
       MyListPageObject.openArticleFromFolder(second_article_title);
+      String title_of_the_article_saved = ArticlePageObject.getArticleTitle();
+      assertEquals("Title doesn't match", second_article_title, title_of_the_article_saved);
+    } else {
+      ArticlePageObject.assertArticleIsDeleted();
 
-
-    String title_of_the_article_saved =  ArticlePageObject.getArticleTitle();
-    assertEquals("Title doesn't match", second_article_title, title_of_the_article_saved);
     }
-
-
-    ArticlePageObject.assertArticleIsDeleted();
-
-
-
   }
 }
