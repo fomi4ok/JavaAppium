@@ -3,13 +3,14 @@ package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static org.junit.Assert.assertTrue;
 
 abstract public class SearchPageObject extends MainPageObject {
 
 
-  public SearchPageObject(AppiumDriver driver) {
+  public SearchPageObject(RemoteWebDriver driver) {
 
     super(driver);
   }
